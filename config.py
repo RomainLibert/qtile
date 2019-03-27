@@ -141,7 +141,8 @@ registered_functions = {
 for plugin_name in os.listdir(os.path.expanduser(PLUGIN_DIR)):
     plugin = load_module(plugin_name, PLUGIN_DIR)
 
-    if plugin:
+    # Either register the functions defined in the plugin or just execute the plugin
+    if plugin and hasattr(plugin, 'registered_functions') and isinstance(plugin.registered_functions, dict):
         registered_functions.update(plugin.registered_functions)
 
 # ====================================================
