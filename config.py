@@ -22,7 +22,7 @@ mod = "mod4"
 PLUGIN_DIR = '~/.config/qtile/plugins'
 THEME_DIR = '~/.config/qtile/themes'
 KEYMAP = '~/.config/qtile/keymap.conf'
-SELECTED_THEME = 'roger'
+SELECTED_THEME = 'swamp'
 TERMINAL = "xterm"
 GROUPS = ('1', '2', '3', '4')
 
