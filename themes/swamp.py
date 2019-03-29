@@ -40,6 +40,15 @@ layout_theme = {
 top_bar = True
 bottom_bar = False
 
+def _get_interface():
+    with open('/proc/net/dev', 'r') as f:
+        for line in f:
+            info = line.split()
+            if len(info) > 10 and info[0] not in ['lo:', 'face'] and float(info[1]) > 0:
+                return info[0][:-1]
+
+interface = _get_interface()
+
 top_bars = [
     bar.Bar([
         widget.GroupBox(borderwidth=0, padding=3, margin=0,
@@ -48,5 +57,18 @@ top_bars = [
             urgent_borer=colors['color'][9],
             active=colors['color'][4],
             background=colors['background']),
+        widget.CurrentScreen(),
+        widget.Prompt(),
+        widget.TaskList(),
+        widget.Pacman(),
+        widget.Volume(),
+        widget.Memory(),
+        widget.CPUGraph(),
+        widget.ThermalSensor(),
+        widget.DF(visible_on_warn=False),
+        widget.Net(interface=interface),
+        widget.Notify(),
+        widget.Clock(),
+        widget.CurrentLayoutIcon(),
     ], 24),
 ]
