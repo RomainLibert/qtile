@@ -3,7 +3,7 @@ import importlib.util
 import re
 
 from libqtile import layout, bar, widget
-from libqtile.config import Screen, Group, Drag, Click, EzKey as Key
+from libqtile.config import Screen, Group, Drag, Click, EzKey as Key, ScratchPad, DropDown
 from libqtile.command import lazy
 from libqtile.utils import QtileError
 
@@ -132,6 +132,8 @@ registered_functions = {
     'spawncmd': lazy.spawncmd(),
     # Applications
     'open_terminal': lazy.spawn(TERMINAL),
+    # ScratchPads
+    'scratch_terminal': lazy.group['scratchpad'].dropdown_toggle('terminal'),
 }
 
 # ====================================================
@@ -195,6 +197,15 @@ for idx, g in enumerate(groups):
     registered_functions['moveto_group_%d' % (idx + 1)] = lazy.window.togroup(g.name)
 
 # ====================================================
+# Adding ScratchPad and DropDowns
+# ====================================================
+scratch_pad = ScratchPad("scratchpad", [
+    DropDown("terminal", TERMINAL, opacity=0.8),
+])
+
+groups.insert(0, scratch_pad)
+
+# ====================================================
 # Generating keybindings
 # ====================================================
 keys = []
@@ -210,3 +221,4 @@ for command, keysyms in parse_keymap():
         print(e)
     else:
         keys.extend(_keys)
+
