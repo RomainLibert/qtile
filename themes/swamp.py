@@ -27,14 +27,16 @@ widget_defaults = {
     'font': 'Arial',
     'fontsize': 12,
     'padding': 3,
+    'foreground': colors['foreground'],
+    'background': colors['background'],
 }
 
 
 layout_theme = {
     'border_width': 2,
-    'margin': 3,
-    'border_focus': '#005F0C',
-    'border_normal': '#555555'
+    'margin': 0,
+    'border_focus': colors['color'][9],
+    'border_normal': colors['color'][2],
 }
 
 top_bar = True
@@ -51,24 +53,42 @@ interface = _get_interface()
 
 top_bars = [
     bar.Bar([
+        widget.CurrentScreen(
+            active_color=colors['color'][13],
+        ),
+        widget.Sep(padding=8, linewidth=2),
         widget.GroupBox(borderwidth=0, padding=3, margin=0,
-            highlight_method='block', rounded=False,
-            this_current_screen_border=colors['color'][6],
-            urgent_borer=colors['color'][9],
-            active=colors['color'][4],
-            background=colors['background']),
-        widget.CurrentScreen(),
+            highlight_method='block',
+            this_current_screen_border=colors['color'][1],
+            urgent_border=colors['color'][9],
+            active=colors['color'][13],
+            inactive=colors['color'][12]),
         widget.Prompt(),
-        widget.TaskList(),
+        widget.TaskList(highlight_method='block', 
+            urgent_border=colors['color'][9], 
+            icon_size=0, 
+            border=colors['color'][10],
+            foreground=colors['color'][7],
+        ),
         widget.Pacman(),
+        widget.TextBox(text='Updates'),
+        widget.Sep(padding=4),
+        widget.TextBox(text='Vol'),
         widget.Volume(),
+        widget.Sep(padding=4),
+        widget.DF(visible_on_warn=False,
+            format='Disk free {r:.1f}%'
+        ),
+        widget.Sep(padding=4),
         widget.Memory(),
-        widget.CPUGraph(),
-        widget.ThermalSensor(),
-        widget.DF(visible_on_warn=False),
+        widget.CPUGraph(graph_color=colors['color'][11], 
+            border_width=0
+        ),
+#        widget.ThermalSensor(),
         widget.Net(interface=interface),
         widget.Notify(),
-        widget.Clock(),
+        widget.Sep(padding=8),
+        widget.Clock(format='%H:%M %d-%m-%Y', padding=6),
         widget.CurrentLayoutIcon(),
     ], 24),
 ]
