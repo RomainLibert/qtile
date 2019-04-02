@@ -96,6 +96,7 @@ layout_theme = theme.layout_theme
 
 layouts = [
     layout.MonadTall(**layout_theme),
+    layout.MonadWide(**layout_theme),
     layout.Max(**layout_theme),
     layout.Tile(**layout_theme),
 ]
@@ -112,20 +113,33 @@ registered_functions = {
     'next_group': lazy.screen.next_group(),
     'prev_group': lazy.screen.prev_group(),
     'toggle_group': lazy.screen.toggle_group(),
-    'increase_ratio': lazy.layout.increase_ratio(),
-    'decrease_ratio': lazy.layout.decrease_ratio(),
     # Window Functions
     'window_kill': lazy.window.kill(),
+    'toggle_floating': lazy.window.toggle_floating(),
+    'toggle_fullscreen': lazy.window.toggle_fullscreen(),
+    'toggle_maximize': lazy.window.toggle_maximize(),
+    'toggle_minimize': lazy.window.toggle_minimize(),
+    # Layout Functions
     'layout_next': lazy.layout.next(),
-    'toggle_floating': lazy.toggle_floating(),
-    'toggle_fullscreen': lazy.toggle_fullscreen(),
-    # ???
+    'layout_prev': lazy.layout.previous(),
     'layout_down': lazy.layout.down(),
     'layout_up': lazy.layout.up(),
     'layout_shuffle_down': lazy.layout.shuffle_down(),
     'layout_shuffle_up': lazy.layout.shuffle_up(),
-    'layout_rotate': lazy.layout.rotate(),
-    'layout_toggle_split': lazy.layout.toggle_split(),
+    'layout_flip': lazy.layout.flip(),
+    'layout_swap': lazy.layout.swap(),
+    'layout_swap_left': lazy.layout.swap_left(),
+    'layout_swap_right': lazy.layout.swap_right(),
+    'layout_swap_main': lazy.layout.swap_main(),
+    'layout_grow': lazy.layout.grow(),
+    'layout_grow_main': lazy.layout.grow_main(),
+    'layout_shrink': lazy.layout.shrink(),
+    'layout_shrink_main': lazy.layout.shrink_main(),
+    'layout_maximize': lazy.layout.maximize(),
+    'layout_normalize': lazy.layout.normalize(),
+    'layout_right': lazy.layout.right(),
+    'layout_left': lazy.layout.left(),
+    'layout_reset': lazy.layout.reset(),
     # General Functions
     'restart': lazy.restart(),
     'shutdown': lazy.shutdown(),
