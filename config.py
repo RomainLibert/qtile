@@ -110,6 +110,8 @@ registered_functions = {
     # Group Functions
     'next_layout': lazy.next_layout(),
     'prev_layout': lazy.prev_layout(),
+    'next_window': lazy.group.next_window(),
+    'prev_window': lazy.group.prev_window(),
     'next_group': lazy.screen.next_group(),
     'prev_group': lazy.screen.prev_group(),
     'toggle_group': lazy.screen.toggle_group(),
